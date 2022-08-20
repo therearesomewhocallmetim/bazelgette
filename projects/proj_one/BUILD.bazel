@@ -1,13 +1,12 @@
 load("@rules_python//python:defs.bzl", "py_binary", "py_test")
 load("@my_pip_install//:requirements.bzl", "requirement")
-# load("@poetry//:dependencies.bzl", "dependency")
 
 
 py_binary(
     name = "main",
     srcs = ["main.py"],
     deps = [
-        "//libs/greeter:mount",
+        "//libs/greeter",
         "//libs/name_getter",
         requirement("requests")
     ],
@@ -18,7 +17,7 @@ py_test(
     name = "test_main",
     srcs = ["test_main.py"],
     deps = [
-        "//:main",
+        "//projects/proj_one:main",
         requirement("pytest"),
     ],
 )

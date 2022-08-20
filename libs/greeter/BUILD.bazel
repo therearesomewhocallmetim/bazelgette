@@ -4,18 +4,11 @@ load("@my_pip_install//:requirements.bzl", "requirement")
 
 
 py_library(
-    name = "mount",
+    name = "greeter",
     srcs = ["main.py", "__init__.py"],
     deps = [requirement("requests")],
-    visibility = ["//projects/proj_one:__pkg__"]
-)
-
-py_test(
-    name = "test_main",
-    srcs = ["test_main.py"],
-    deps = [
-        "//:main",
-        # dependency("wheel"),
-        requirement("pytest"),
-    ],
+    visibility = [
+        "//projects/proj_one:__pkg__",
+        "//projects/proj_two:__pkg__",
+    ]
 )
