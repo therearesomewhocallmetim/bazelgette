@@ -20,7 +20,7 @@ load("@rules_python//python:pip.bzl", "pip_install")
 pip_install(
     name = "my_pip_install",
     python_interpreter_target = interpreter,
-    requirements = "//:reqs.txt",
+    requirements = "//third_party:reqs.txt",
     extra_pip_args = ["--require-hashes"],
 )
 

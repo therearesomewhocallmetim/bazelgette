@@ -5,9 +5,9 @@ load("@my_pip_install//:requirements.bzl", "requirement")
 
 py_library(
     name = "mount",
-    srcs = ["main.py"],
+    srcs = ["main.py", "__init__.py"],
     deps = [requirement("requests")],
-    visibility = ["//visibility:public"]
+    visibility = ["//projects/proj_one:__pkg__"]
 )
 
 py_test(

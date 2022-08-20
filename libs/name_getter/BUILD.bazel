@@ -1,0 +1,5 @@
+py_library(
+    name="name_getter",
+    srcs = glob(["*.py"], exclude = ["test_*.py"]),
+    visibility = ["//projects/proj_one:__pkg__"],
+)
