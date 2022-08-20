@@ -1,0 +1,20 @@
+load("@rules_python//python:defs.bzl", "py_library", "py_test")
+# load("@poetry//:dependencies.bzl", "dependency")
+load("@my_pip_install//:requirements.bzl", "requirement")
+
+
+py_library(
+    name = "mount",
+    srcs = ["main.py"],
+    deps = [requirement("requests")],
+)
+
+py_test(
+    name = "test_main",
+    srcs = ["test_main.py"],
+    deps = [
+        "//:main",
+        # dependency("wheel"),
+        requirement("pytest"),
+    ],
+)

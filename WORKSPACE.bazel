@@ -1,0 +1,54 @@
+load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
+
+http_archive(
+    name = "rules_python",
+    sha256 = "c03246c11efd49266e8e41e12931090b613e12a59e6f55ba2efd29a7cb8b4258",
+    strip_prefix = "rules_python-0.11.0",
+    url = "https://github.com/bazelbuild/rules_python/archive/refs/tags/0.11.0.tar.gz",
+)
+
+load("@rules_python//python:repositories.bzl", "python_register_toolchains")
+
+python_register_toolchains(
+    name = "python3",
+    python_version = "3.8",
+)
+
+load("@python3//:defs.bzl", "interpreter")
+load("@rules_python//python:pip.bzl", "pip_install")
+
+pip_install(
+    name = "my_pip_install",
+    python_interpreter_target = interpreter,
+    requirements = "//:reqs.txt",
+    extra_pip_args = ["--require-hashes"],
+)
+
+
+# Poetry rules for managing Python dependencies
+
+http_archive(
+    name = "com_sonia_rules_poetry",
+    sha256 = "8a7a6a5d2ef859ba4309929f3b4d61031f2a4bfed6f450f04ab09443246a4b5c",
+    strip_prefix = "rules_poetry-ecd0d9c66b89403667304b11da3bd99764797a63",
+    urls = ["https://github.com/soniaai/rules_poetry/archive/ecd0d9c66b89403667304b11da3bd99764797a63.tar.gz"],
+)
+
+load("@com_sonia_rules_poetry//rules_poetry:defs.bzl", "poetry_deps")
+
+poetry_deps()
+
+# genrule(
+#     name = "export_poetry_deps",
+#     srcs = ["//:requreiements.txt"],
+#     cmd_bash = "poetry export -f requirements.txt -o reqs3.txt",
+#     outs = ["reqs3.txt"]
+# )
+
+# load("@com_sonia_rules_poetry//rules_poetry:poetry.bzl", "poetry")
+
+# poetry(
+#     name = "poetry",
+#     lockfile = "//:poetry.lock",
+#     pyproject = "//:pyproject.toml",
+# )
