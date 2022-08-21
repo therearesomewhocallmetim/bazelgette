@@ -14,3 +14,4 @@ The goal of this project is to see how a `Bazel`-built repo can be organized, an
    [Clang 14.0.3 ]
    ```
 5. Run `bazel test '...'` to run the tests
+6. On Ubuntu, you might need to run `bazelisk <commands>` instead of `bazel <commands>`
