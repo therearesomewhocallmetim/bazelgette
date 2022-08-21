@@ -3,7 +3,8 @@ load("@my_pip_install//:requirements.bzl", "requirement")
 
 
 py_binary(
-    name = "main",
+    name = "proj_one",
+    main = "main.py",
     srcs = ["main.py"],
     deps = [
         "//libs/greeter",
@@ -17,7 +18,7 @@ py_test(
     name = "test_main",
     srcs = ["test_main.py"],
     deps = [
-        "//projects/proj_one:main",
+        "//projects/proj_one",
         requirement("pytest"),
     ],
 )
