@@ -19,11 +19,10 @@ load("@rules_python//python:pip.bzl", "pip_install")
 
 pip_install(
     name = "my_pip_install",
+    extra_pip_args = ["--require-hashes"],
     python_interpreter_target = interpreter,
     requirements = "//third_party:reqs.txt",
-    extra_pip_args = ["--require-hashes"],
 )
-
 
 # Poetry rules for managing Python dependencies
 

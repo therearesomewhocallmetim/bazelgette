@@ -1,23 +1,24 @@
 load("@rules_python//python:defs.bzl", "py_binary", "py_test")
 load("@my_pip_install//:requirements.bzl", "requirement")
 
-
 py_binary(
     name = "proj_two",
+    srcs = glob(
+        ["*.py"],
+        exclude = ["test_*.py"],
+    ),
     main = "main.py",
-    srcs = glob(["*.py"], exclude = ["test_*.py"]),
     deps = [
-        "//libs/greeter"
+        "//libs/greeter",
     ],
-
 )
 
-py_test (
+py_test(
     name = "test_proj_two",
     # main = "test_main.py",
     srcs = glob(["test_*.py"]),
     deps = [
         "//projects/proj_two",
-        requirement('pytest'),
-    ]
+        requirement("pytest"),
+    ],
 )

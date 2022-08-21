@@ -1,17 +1,16 @@
 load("@rules_python//python:defs.bzl", "py_binary", "py_test")
 load("@my_pip_install//:requirements.bzl", "requirement")
 
-
 py_binary(
     name = "proj_one",
-    main = "main.py",
     srcs = ["main.py"],
+    main = "main.py",
+    visibility = ["//visibility:public"],
     deps = [
         "//libs/greeter",
         "//libs/name_getter",
-        requirement("requests")
+        requirement("requests"),
     ],
-    visibility = ["//visibility:public"]
 )
 
 py_test(

@@ -1,2 +1,2 @@
 def get_greeting():
-    return "Good afternoon"
+    return "Hello"
